@@ -47,7 +47,8 @@ int main() {
   // Section titles for code directories
   map<string, string> dir_to_title = {
     {"math", "Matemática"},
-    {"graphs", "Grafos"}
+    {"graphs", "Grafos"},
+    {"strings", "Strings"}
   };
 
   // Put preamble in output code
