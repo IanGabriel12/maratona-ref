@@ -5,5 +5,5 @@ fi
 
 g++ latex/genlatex.cpp -o genlatex
 ./genlatex
-pdflatex --output-directory=output output/library.tex
+rubber --into output -d output/library.tex
 rm genlatex

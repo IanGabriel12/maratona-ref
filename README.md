@@ -5,9 +5,9 @@ A ideia é condensar o que os assuntos que sabemos ou que ouvimos falar para est
 
 ## Rodando o projeto
 ### Requisitos
-Instale o `texlive-full` (ele é pesadinho).
+Instale o `texlive-full` e o `rubber` (texlive é pesadinho).
 ```bash
-sudo apt install texlive-full
+sudo apt install texlive-full rubber
 ```
 
 ### Obtendo o PDF
