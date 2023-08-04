@@ -48,7 +48,8 @@ int main() {
   map<string, string> dir_to_title = {
     {"math", "Matemática"},
     {"graphs", "Grafos"},
-    {"strings", "Strings"}
+    {"strings", "Strings"},
+    {"struct", "Estruturas de dados"}
   };
 
   // Put preamble in output code
