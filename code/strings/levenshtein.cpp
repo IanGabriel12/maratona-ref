@@ -1,4 +1,4 @@
-// Levenshtein distance
+// Edit distance
 int dist[MAX][MAX];
 string s, t;
 
