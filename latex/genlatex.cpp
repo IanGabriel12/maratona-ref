@@ -49,7 +49,8 @@ int main() {
     {"math", "Matemática"},
     {"graphs", "Grafos"},
     {"strings", "Strings"},
-    {"struct", "Estruturas de dados"}
+    {"struct", "Estruturas de dados"},
+    {"dp", "Programação dinâmica"}
   };
 
   // Put preamble in output code
@@ -81,4 +82,5 @@ int main() {
   ofile << "\\end{document}";
   ofile.close();
   ifile.close();
+  cout << 'a' << endl;
 }

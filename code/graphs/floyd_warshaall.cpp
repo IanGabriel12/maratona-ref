@@ -1,6 +1,5 @@
-
-// Floyd-Warshall O(n^3)
-// (all shortest paths between nodes in single run)
+// Floyd-Warshall
+// (all shortest paths between nodes in single run in O(n^3))
 void floyd_warshall() {
   for (int i=1; i<=n; i++) {
     for (int j=1; j<=n; j++) {
