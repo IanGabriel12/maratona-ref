@@ -50,7 +50,8 @@ int main() {
     {"graphs", "Grafos"},
     {"strings", "Strings"},
     {"struct", "Estruturas de dados"},
-    {"dp", "Programação dinâmica"}
+    {"dp", "Programação dinâmica"},
+    {"geometry", "Geometria"}
   };
 
   // Put preamble in output code

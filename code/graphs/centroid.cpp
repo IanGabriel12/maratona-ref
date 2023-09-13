@@ -1,4 +1,4 @@
-// Encontrando centroide da árvore
+// Centroide da árvore
 // Finds the centroid of a tree in O(n)
 // A centroid is a vertex where all of its subtrees have size <= n/2
 int n;
