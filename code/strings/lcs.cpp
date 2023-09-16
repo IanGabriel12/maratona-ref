@@ -1,3 +1,4 @@
+// Longest common subsequence
 int dp[MAX][MAX];
 
 int lcs(string a, string b) {
