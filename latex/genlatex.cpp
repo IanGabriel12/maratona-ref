@@ -2,6 +2,8 @@
 #include<map>
 #include<filesystem>
 #include<iostream>
+#include<vector>
+#include<algorithm>
 using namespace std;
 
 /**
@@ -64,19 +66,31 @@ int main() {
     string dir_name = get_dir_name(dir);
     string section_title = dir_to_title[dir_name];
     ofile << "\\section{" << section_title << "}\n";
+    vector<pair<string, string>> code_to_add;
+
     for(const auto &file: filesystem::directory_iterator{dir}) {
       ifstream code_stream{file.path()};
+      ostringstream latex_from_file;
 
+      // Generate the code from file content
       string subsection_title = get_code_title(code_stream);
-      ofile << "\\subsection{" << subsection_title << "}\n";
+      latex_from_file << "\\subsection{" << subsection_title << "}\n";
 
-      // Writes the code
-      ofile << "\\begin{lstlisting}\n";
+      latex_from_file << "\\begin{lstlisting}\n";
       while(getline(code_stream, line)) {
-        ofile << line << '\n';
+        latex_from_file << line << '\n';
       }
-      ofile << "\\end{lstlisting}\n";
+      latex_from_file << "\\end{lstlisting}\n";
+
       code_stream.close();
+      // Add to subsection list
+      code_to_add.push_back({subsection_title, latex_from_file.str()});
+    }
+
+    // Sort from lexicographical order of subtitle
+    sort(code_to_add.begin(), code_to_add.end());
+    for(auto &[_, code] : code_to_add) {
+      ofile << code;
     }
   };
 
