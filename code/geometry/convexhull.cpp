@@ -13,13 +13,19 @@ void convex_hull(vector<pt>& a, bool include_collinear = false) {
   down.push_back(p1);
   for (int i = 1; i < (int)a.size(); i++) {
       if (i == a.size() - 1 || cw(p1, a[i], p2, include_collinear)) {
-          while (up.size() >= 2 && !cw(up[up.size()-2], up[up.size()-1], a[i], include_collinear))
-              up.pop_back();
+          while (
+            up.size() >= 2 && 
+            !cw(up[up.size()-2], up[up.size()-1], a[i], include_collinear)
+          )
+            up.pop_back();
           up.push_back(a[i]);
       }
       if (i == a.size() - 1 || ccw(p1, a[i], p2, include_collinear)) {
-          while (down.size() >= 2 && !ccw(down[down.size()-2], down[down.size()-1], a[i], include_collinear))
-              down.pop_back();
+          while (
+            down.size() >= 2 && 
+            !ccw(down[down.size()-2], down[down.size()-1], a[i], include_collinear)
+          )
+            down.pop_back();
           down.push_back(a[i]);
       }
   }
