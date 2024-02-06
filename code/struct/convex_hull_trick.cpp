@@ -67,8 +67,9 @@ struct cht {
     hull.push_front({a, b, INF});
     if(hull.size() > 1)
       hull[0].x_inter = intersection(hull[0], hull[1]);
-
   }
 
-  
+  void clear() {
+    hull.clear();
+  }
 };
