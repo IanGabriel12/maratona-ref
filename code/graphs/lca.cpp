@@ -1,4 +1,4 @@
-// LCA (Menor ancestral comum)
+// LCA - Binary lifting
 vector<int> graph[MAX];
 int level[MAX];
 int pai[MAX];
