@@ -1,8 +1,8 @@
 // LCA com HLD
 // O(log n)
 vector<int> g[MAX];
-int pos[MAX], pai[MAX], sz[MAX], v[MAX];
-int h[MAX]; // Cabeca da chain do vertice i
+int pos[MAX], pai[MAX], sz[MAX];
+int h[MAX];
 int t;
 void dfs(int x, int p=-1) {
     sz[x] = 1;
@@ -13,9 +13,8 @@ void dfs(int x, int p=-1) {
     }
 }
 void build_hld(int x, int p=-1) {
-    pos[x]=t++;
-    v[pos[x]] = x;
-    for(int &y : g[x]) if(y != p) {
+    pos[x] = t++;
+    for(int y : g[x]) if(y != p) {
         pai[y] = x;
         h[y] = (y == g[x][0] ? h[x] : y);
         build_hld(y, x);
@@ -29,5 +28,5 @@ void build(int root=1) {
 }
 int lca(int a, int b) {
     if(pos[a] < pos[b]) swap(a, b);
-    return h[a] == h[b] ? b : lca(pai[h[a]], b);
+    return h[b] == h[a] ? b : lca(pai[h[a]], b);
 }
