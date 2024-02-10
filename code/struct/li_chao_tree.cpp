@@ -1,6 +1,6 @@
 // Li-Chao Tree
 
-// Warning: não foi testada ainda
+// Warning: nao foi testada ainda
 struct Line {
   ll a, b;
   Line(): a(0), b(-INF) {}
