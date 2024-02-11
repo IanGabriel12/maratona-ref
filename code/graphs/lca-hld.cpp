@@ -9,7 +9,7 @@ void dfs(int x, int p=-1) {
     for(int &y : g[x]) if(y != p) {
         dfs(y, x);
         sz[x] += sz[y];
-        if(sz[y] > sz[g[x][0]]) swap(y, g[x][0]);
+        if(sz[y] > sz[g[x][0]] or g[x][0] == p) swap(y, g[x][0]);
     }
 }
 void build_hld(int x, int p=-1) {
