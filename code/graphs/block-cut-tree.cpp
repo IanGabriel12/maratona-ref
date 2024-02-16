@@ -6,8 +6,9 @@
 // Os blocos sao as componentes biconexas. Uma componente
 // biconexa eh um conjunto de ARESTAS tais que o grafo
 // induzido nao possui pontos de articulacao.
-// Quaisquer dois vertices em uma componente biconexa possuem
-// pelo menos dois caminhos disjuntos em vertices.
+// Quaisquer dois vertices no grafo induzido de
+// uma componente biconexa possuem pelo menos dois caminhos 
+// disjuntos em vertices.
 // 
 // Os pontos de articulacao e os blocos "se alternam", i.e, eles
 // formam uma 2-coloracao da arvore.
