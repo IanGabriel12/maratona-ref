@@ -1,4 +1,6 @@
 // Crivo de erastótenes
+// Encontra todos os primos até N
+// Complexidade O(N log(log N)) (up to 10^8)
 bool is_prime[MAX];
 vector<int> primes;
 void sieve(int n) {
