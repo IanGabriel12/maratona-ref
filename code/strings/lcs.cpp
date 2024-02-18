@@ -1,4 +1,6 @@
 // Longest common subsequence
+// Maior subsequencia comum de duas strings, EX: “AGGTAB” e “GXTXAYB” tem a LCS = "GTAB"
+// Complexidade O(N*M) (tamanho de cada string)
 int dp[MAX][MAX];
 
 int lcs(string a, string b) {
