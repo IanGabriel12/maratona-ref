@@ -1,4 +1,5 @@
-// Smallest enclosing circle in O(n)
+// Encontra o menor circulo possível que envolve um conjunto de pontos no plano
+// Complexidade O(n)
 #define double long double
 
 struct Point {
