@@ -1,4 +1,5 @@
 // Multiplicação de matrizes
+// Complexidade O(N^3) (considerando N o mesmo valor de linhas e colunas)
 vector<vector<int>> mat_mul(
   vector<vector<int>> a, 
   vector<vector<int>> b
@@ -20,6 +21,5 @@ vector<vector<int>> mat_mul(
       result[i][j] = sum;
     }
   }
-
   return result;
 }
