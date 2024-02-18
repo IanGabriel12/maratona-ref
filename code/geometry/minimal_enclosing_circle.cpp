@@ -1,4 +1,5 @@
-// Encontra o menor circulo possível que envolve um conjunto de pontos no plano
+// Minimal Enclosing Circle
+// Encontra o menor circulo possivel que envolve um conjunto de pontos no plano
 // Complexidade O(n)
 #define double long double
 
