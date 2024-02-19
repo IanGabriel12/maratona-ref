@@ -38,11 +38,15 @@ namespace segtree {
         return query(1, 0, n-1, tl, tr); // aqui tambem
     }
     void update(int id, int l, int r, int tl, int tr, int v) {
+        unlazy(id, l, r);
         if(l > tr || tl > r) return;
-        if(tl <= l && r <= tr) { lazy[id] += v; return; }
+        if(tl <= l && r <= tr) { 
+            lazy[id] += v;
+            unlazy(id, l, r);
+            return;
+        }
         int m=(l+r)/2, e=2*id, d=2*id+1;
         update(e, l, m, tl, tr, v); update(d, m+1, r, tl ,tr, v);
-        unlazy(e, l, m); unlazy(d, m+1, r);
         seg[id] = seg[e] + seg[d];
     }
     void update(int pos, int v) {

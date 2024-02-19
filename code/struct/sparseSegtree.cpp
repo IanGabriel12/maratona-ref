@@ -34,16 +34,16 @@ namespace dynamic_seg {
         lazy[id] = 0;
     }
     void update(int id, int l, int r, int tl, int tr, int value) {
+        refresh(id, l, r);
         if(l > tr || tl > r) return;
         if(tl <= l && r <= tr) {
             lazy[id] += value;
+            refresh(id, l, r);
             return;
         }
         int m=(l+r) >> 1;
         update(getEsq(id), l, m, tl, tr, value);
         update(getDir(id), m+1, r, tl, tr, value);
-        refresh(getEsq(id), l, m);
-        refresh(getDir(id), m+1, r);
         soma[id] = soma[getEsq(id)] + soma[getDir(id)];
     }
     void update(int tl, int tr, int value) {
