@@ -1,9 +1,9 @@
 // Virtual Tree
 /**
- * Controi a arvore virtual dos vértices em O(k log k)
- * onde k é a quantidade de vértices considerados.
- * A árvore tem O(k) vértices.
- * Precisa de LCA, lembre de buildar o lca antes
+ * Constroi a arvore virtual dos vertices em O(k log k)
+ * onde k eh a quantidade de vertices considerados.
+ * A arvore tem O(k) vertices.
+ * Precisa de LCA, lembre de buildar o lca antes.
 */
 vector<int> virt[MAX];
 int buildVirtual(vector<int> v) {
