@@ -16,7 +16,8 @@ struct Dinic {
     int n, m = 0;
     int s, t;
     queue<int> q;
- 
+    
+    // 0 indexado.
     Dinic(int n, int s, int t) : n(n), s(s), t(t) {
         adj.resize(n);
         ptr.resize(n);
