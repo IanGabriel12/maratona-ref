@@ -1,83 +1,41 @@
-// Suffix Array + LCP
-/**
- * Ordena p de acordo com as chaves em c.
- * Complexidade: O(n)
- */
-void radix(vector<int> &p, vector<int> &c) {
-    int n = p.size();
-    vector<int> cnt(n), pos(n);
-    vector<int> p_new(n);
-    for(auto x : c) cnt[x]++;
-    pos[0] = 0;
-    for(int i=1; i<n; i++) pos[i] = pos[i-1] + cnt[i-1];
-    for(int i=0; i<n; i++) {
-        int ci = c[p[i]];
-        p_new[pos[ci]++] = p[i];
-    }
-    p = p_new;
+// Suffix Array - O(n log n)
+//
+// kasai recebe o suffix array e calcula lcp[i],
+// o lcp entre s[sa[i],...,n-1] e s[sa[i+1],..,n-1]
+//
+// Complexidades:
+// suffix_array - O(n log(n))
+// kasai - O(n)
+
+vi suffix_array(string s) {
+	s += "$";
+	int n = s.size(), N = max(n, 260);
+	vi sa(n), ra(n);
+	for(int i = 0; i < n; i++) sa[i] = i, ra[i] = s[i];
+
+	for(int k = 0; k < n; k ? k *= 2 : k++) {
+		vi nsa(sa), nra(n), cnt(N);
+		for(int i = 0; i < n; i++) nsa[i] = (nsa[i]-k+n)%n, cnt[ra[i]]++;
+		for(int i = 1; i < N; i++) cnt[i] += cnt[i-1];
+		for(int i = n-1; i+1; i--) sa[--cnt[ra[nsa[i]]]] = nsa[i];
+		for(int i = 1, r = 0; i < n; i++) nra[sa[i]] = r += ra[sa[i]] !=
+			ra[sa[i-1]] or ra[(sa[i]+k)%n] != ra[(sa[i-1]+k)%n];
+		ra = nra;
+		if (ra[sa[n-1]] == n-1) break;
+	}
+	return vi(sa.begin()+1, sa.end());
 }
 
-/**
- * Constroi o suffix array da string s.
- * Complexidade: O(n log n)
- * p -> suffix array de s
- * c[i] -> posicao do sufixo i em p
- */
-pair<vector<int>, vector<int>> build_sa(string &s) {
-    s.push_back('$');
-    int n = s.size();
-    vector<int> p(n), c(n);
-    vector<pair<char, int>> a(n);
-    for(int i=0; i<n; i++) a[i] = {s[i], i};
-    sort(a.begin(), a.end());
-    for(int i=0; i<n; i++) p[i] = a[i].second;
-    c[p[0]] = 0;
-    for(int i=1; i<n; i++) {
-        if(a[i].first == a[i-1].first) {
-            c[p[i]] = c[p[i-1]];
-        } else {
-            c[p[i]] = c[p[i-1]] + 1;
-        }
-    }
+vi kasai(string s, vi sa) {
+	int n = s.size(), k = 0;
+	vi ra(n), lcp(n);
+	for (int i = 0; i < n; i++) ra[sa[i]] = i;
 
-    int k = 0;
-    while((1 << k) < n) {
-        for(int i=0; i<n; i++) {
-            p[i] = (p[i] - (1 << k) + n) % n;
-        }
-        radix(p, c);
-        vector<int> c_new(n);
-        c_new[p[0]] = 0;
-        for(int i=1; i<n; i++) {
-            pair<int, int> prev = {c[p[i-1]], c[(p[i-1] + (1 << k)) % n]};
-            pair<int, int> now = {c[p[i]], c[(p[i] + (1 << k)) % n]};
-            if(now == prev) {
-                c_new[p[i]] = c_new[p[i-1]];
-            } else {
-                c_new[p[i]] = c_new[p[i-1]] + 1;
-            }
-        }
-        c = c_new;
-        k++;
-    }
-    return {p, c};
-}
-
-/**
- * Constroi o array LCP a partir do suffix array de s.
- * Complexidade: O(n)
- * lcp[i] -> lcp de p[i] e p[i-1]
- */
-vector<int> kasai(vector<int> &p, vector<int> &c, string &s) {
-    int n = s.size();
-    vector<int> lcp(n);
-    int k = 0;
-    for(int i=0; i<n-1; i++) {
-        int pi = c[i];
-        int j = p[pi-1];
-        while(s[i+k] == s[j+k]) k++;
-        lcp[pi] = k;
-        k = max(k-1, 0);
-    }
-    return lcp;
+	for (int i = 0; i < n; i++, k -= !!k) {
+		if (ra[i] == n-1) { k = 0; continue; }
+		int j = sa[ra[i]+1];
+		while (i+k < n and j+k < n and s[i+k] == s[j+k]) k++;
+		lcp[ra[i]] = k;
+	}
+	return lcp;
 }
