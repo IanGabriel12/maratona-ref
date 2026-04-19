@@ -1,16 +1,19 @@
-// Crivo de erastótenes
-// Encontra todos os primos ate N
-// Complexidade O(N log(log N)) (up to 10^8)
-bool is_prime[MAX];
-vector<int> primes;
-void sieve(int n) {
-  memset(is_prime, 1, n + 1);
-  is_prime[0] = is_prime[1] = false;
-  for(int i=2; i<=n; i++) {
-    if(!is_prime[i]) continue;
-    primes.push_back(i);
-    for(int j=i*i; j<=n; j+=i) {
-      is_prime[j] = false;
+// Crivo de erastótenes O(N)
+// lp[i] menor primo que divide i
+// pr lista de primos 
+const int MAX = 1e7+1;
+int lp[MAX];
+vi pr;
+
+rep(i, 2, MAX) {
+    if (lp[i] == 0) {
+        lp[i] = i;
+        pr.push_back(i);
     }
-  }
+    for (int j = 0; i * pr[j] < MAX; ++j) {
+        lp[i * pr[j]] = pr[j];
+        if (pr[j] == lp[i]) {
+            break;
+        }
+    }
 }
