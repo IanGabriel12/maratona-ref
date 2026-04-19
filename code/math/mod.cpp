@@ -1,8 +1,8 @@
 const int MOD = 1e9+7;
 struct mint {
-    int v;
+    ll v;
     mint(): v(0) {}
-    mint(int _v) : v(_v) {}
+    mint(ll _v) : v(_v) {}
     mint operator*(mint &r) { return mint(v*r.v%MOD); }
     mint operator+(mint &r) { return mint((v+r.v)%MOD); }
     mint operator-(mint &r) { return mint((MOD+v-r.v)%MOD); }
