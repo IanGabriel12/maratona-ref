@@ -1,7 +1,9 @@
-/* Prefix function
-  pi[i] = tamanho do maior prefixo de s que é sufixo de s[0..i] - O(|s|)
-  matching(pat, t) = posições de t onde pat ocorre - O(|pat|+|t|)
-*/
+/**
+ * Author: Ian Gabriel
+ * Description: Função PI e matching de padrão. pi[i] é o maior j (diferente de i), tal que o prefixo de tamanho j
+ * é igual ao sufixo de tamanho j da string s[0..i]. matching(pat, t) usa pi para calcular as posições em que $pat$ ocorre em $t$
+ * Time: pi = $O(|s|)$; matching = $O(|pat| + |t|)$
+ */
 vi pi(string s) {
   vi pi(s.size()); pi[0] = 0;
   for(int i=1, j=0; i<s.size(); i++) {
